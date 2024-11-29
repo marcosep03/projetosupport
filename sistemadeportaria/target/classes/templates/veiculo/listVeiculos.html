@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inclusão do CSS do Bootstrap para o estilo básico da página -->
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>Projeto Sistema de Portaria</title>
+    <meta name="author" content="Marcos Eduardo"/>
+    <!-- Inclusão do CSS customizado -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Inclusão do Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Inclusão de fontes do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Inclusão do cabeçalho da página -->
+<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
+
+<div class="container" style="margin-top: 50px;">
+    <h3>Ultimos Veículos Adicionados</h3>
+    <hr>
+
+    <!-- Tabela para exibir os veículos -->
+    <table class="table table-bordered table-hover">
+        <thead>
+        <!-- Cabeçalho da tabela -->
+        <th scope="col">Nome</th>
+        <th scope="col">Matricula</th>
+        <th scope="col">Turno</th>
+        <th scope="col">Placa</th>
+        <th scope="col">Modelo</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Ação</th>
+        </thead>
+        <tbody>
+        <!-- Laço para exibir os dados dos veículos -->
+        <tr scope="row" th:each="veiculos : ${veiculosList}">
+            <td th:text="${veiculos.nome}"></td>
+            <td th:text="${veiculos.matricula}"></td>
+            <td th:text="${veiculos.turno}"></td>
+            <td th:text="${veiculos.placa}"></td>
+            <td th:text="${veiculos.modelo}"></td>
+            <td th:text="${veiculos.marca}"></td>
+
+            <td>
+                <!-- Botões para editar ou excluir o veículo -->
+                <div style="display: flex; gap: 10px;">
+                    <!-- Botão para editar o veículo -->
+                    <a class="btn btn-primary"
+                       th:href="@{alterar/{id}(id=${veiculos.id})}"
+                       style="width: 90px; height: 10px; font-size: 14px; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; padding: 15px;">
+                        <i class="fas fa-edit" style="margin-right: 5px;"></i> Editar
+                    </a>
+
+                    <!-- Botão para excluir o veículo -->
+                    <a class="btn btn-danger"
+                       th:href="@{excluir/{id}(id=${veiculos.id})}"
+                       style="width: 90px; height: 10px; font-size: 14px; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; padding: 15px;">
+                        <i class="fas fa-times" style="margin-right: 5px;"></i> Excluir
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Inclusão de scripts -->
+<script src="/js/main.js"></script>
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

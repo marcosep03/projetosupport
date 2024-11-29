@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inclusão do CSS do Bootstrap para o estilo básico da página -->
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>Projeto Sistema de Portaria</title>
+    <meta name="author" content="Marcos Eduardo"/>
+    <!-- Inclusão de um CSS específico para customizações de login -->
+    <link rel="stylesheet" href="/css/login.css">
+    <!-- Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Inclusão de fontes do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Formulário de Login -->
+<div class="Login-Form">
+    <div class="container">
+        <div class="main-div">
+            <!-- Cabeçalho do formulário com título e descrição -->
+            <div class="texto-header">
+                <h2>Admin login</h2>
+                <p>Insira suas credencias para efetuar login no sistema.</p>
+            </div>
+            <!-- Formulário de envio de dados -->
+            <form method="post" action="/login" th:object="${usuario}">
+                <!-- Exibição de mensagem de erro global (se houver) -->
+                <div class="alert alert-danger" role="alert" th:if="${msg}">
+                    <strong th:text="${msg}"></strong>
+                </div>
+
+                <!-- Campo para inserir o nome de usuário -->
+                <div class="form-group">
+                    <input type="text" th:field="*{user}" class="form-control" placeholder="username">
+                    <!-- Exibe erro de validação para o campo 'user' se houver -->
+                    <div class="text-danger" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
+                </div>
+
+                <!-- Campo para inserir a senha do usuário -->
+                <div class="form-group">
+                    <input type="password" th:field="*{senha}" class="form-control" placeholder="insira sua senha">
+                    <!-- Exibe erro de validação para o campo 'senha' se houver -->
+                    <div class="text-danger" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
+                </div>
+
+                <!-- Link para cadastro, caso o usuário ainda não tenha conta -->
+                <div class="cadastro">
+                    <a th:href="@{cadastro}">Não tem cadastro? clique aqui.</a>
+                </div>
+                <!-- Botão para enviar o formulário de login -->
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

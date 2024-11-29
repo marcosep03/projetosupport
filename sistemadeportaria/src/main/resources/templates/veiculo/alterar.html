@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inclusão do CSS do Bootstrap para estilo básico da página -->
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>+ Alterar Veículos</title>
+    <meta name="author" content="Marcos Eduardo"/>
+    <!-- Inclusão do CSS customizado -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Inclusão do Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Inclusão de fontes do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Inclusão do cabeçalho da página -->
+<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
+
+<div class="container" style="margin-top: 50px;">
+    <!-- Título da página de alteração de veículo -->
+    <h4>+ Alterar Veículos</h4>
+    <hr>
+
+    <!-- Formulário de alteração de veículo -->
+    <form method="post" action="/alterar" th:object="${veiculo}">
+        <!-- Campo oculto para armazenar o ID do veículo -->
+        <input type="hidden" th:field="*{id}"></input>
+
+        <!-- Campo para inserir o nome do motorista -->
+        <div class="row">
+            <div class="col-md-6 form-group offset-md-3">
+                <label>Nome do Motorista</label>
+                <input class="form-control" placeholder="Ex: Marcos Eduardo" th:field="*{nome}" type="text">
+            </div>
+        </div>
+
+        <!-- Campo para selecionar o modelo do veículo -->
+        <div class="row">
+            <div class="col-md-6 form-group offset-md-3">
+                <label>Selecione o Modelo do Veículo:</label>
+                <select class="form-control" th:field="*{modelo}">
+                    <!-- Preenchimento do modelo com valores do enum Modelo -->
+                    <option th:each="modelo : ${T(com.example.sistemadeportaria.Enums.Modelo).values()}"
+                            th:value="${modelo}" th:text="${modelo}">
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Campo para selecionar a marca do veículo -->
+        <div class="row">
+            <div class="col-md-6 form-group offset-md-3">
+                <label>Selecione a Marca do Veículo: </label>
+                <select class="form-control" th:field="*{marca}">
+                    <!-- Preenchimento da marca com valores do enum Marca -->
+                    <option th:each="marca : ${T(com.example.sistemadeportaria.Enums.Marca).values()}"
+                            th:value="${marca}" th:text="${marca}">
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Campo para inserir a placa do veículo -->
+        <div class="row">
+            <div class="col-md-6 form-group offset-md-3">
+                <label>Placa do Veículo: </label>
+                <input class="form-control" placeholder="Ex: EMP2C94" th:field="*{placa}" type="text">
+            </div>
+        </div>
+
+        <!-- Campo para mostrar a matrícula do veículo, com botão para gerar -->
+        <div class="row">
+            <div class="col-md-6 form-group offset-md-3">
+                <label>Gerar Matricula: </label>
+                <input readonly="readonly"  class="form-control" id="matricula" th:field="*{matricula}">
+                <button type="button" onclick="GerarMatricula();" class="btn btn-dark" style="margin-top: 10px; width: 60px; height: 30px; font-size: 13px; display: flex; justify-content: center; align-items: center;" disabled>
+                    Gerar
+                </button>
+            </div>
+        </div>
+
+        <!-- Campo para inserir o turno -->
+        <div class="row">
+            <div class="col-md-6 form-group offset-md-3">
+                <label>Turno: </label>
+                <input class="form-control" placeholder="Ex: Manhã" th:field="*{turno}" type="text">
+            </div>
+        </div>
+
+        <!-- Botões para salvar ou voltar -->
+        <div class="row">
+            <button type="submit" class="btn btn-success offset-md-5" style="margin-top: 10px; width: 60px; height: 30px; font-size: 13px; display: flex; justify-content: center; align-items: center;">SALVAR</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-outline-danger" style="margin-top: 10px; width: 60px; height: 30px; font-size: 13px; display: flex; justify-content: center; align-items: center;">VOLTAR</a>
+        </div>
+    </form>
+</div>
+
+<!-- Inclusão de scripts -->
+<script src="/js/main.js"></script>
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

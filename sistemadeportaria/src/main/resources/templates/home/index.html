@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inclusão do CSS do Bootstrap -->
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>Projeto Sistema de Portaria</title>
+    <meta name="author" content="Marcos Eduardo"/>
+    <!-- Inclusão de estilo personalizado -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Inclusão de fontes do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Exibição de uma mensagem de boas-vindas -->
+<div style="margin: 0; text-align: center;" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Seja Bem-Vindo: <span th:text="${session.usuarioLogado.user}"></span></strong>
+    <!-- Botão para fechar o alerta -->
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- Inclusão do cabeçalho (fragmento Thymeleaf) -->
+<div th:replace="fragmentos/fragmentos.html :: cabecalho"></div>
+
+<!-- Seção principal com fundo personalizado -->
+<section class="neo-section" style="background-image: url('/img/fundo.jpg');">
+    <div class="sombra"></div>
+    <div class="center neo-container">
+        <h1 class="texto-centro">Sistema de Portaria de Veículos</h1>
+        <!-- Botões de navegação -->
+        <div class="botoes">
+            <div class="wm">
+                <!-- Link para cadastrar veículo -->
+                <a th:href="@{inserirVeiculos}" class="btn">CADASTRAR VEÍCULO</a>
+            </div>
+            <div class="wm">
+                <!-- Link para pesquisar veículo -->
+                <a th:href="@{filtro-veiculos}" class="btn justify-content-center">ENCONTRAR VEÍCULO</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal para pesquisa de veículos -->
+<div class="modal fade" id="modalPesquisa">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- Título do modal -->
+                <h5 class="modal-title">Encontre um Veículo</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <!-- Formulário de pesquisa de veículos -->
+            <form method="post" action="pesquisar-veiculo" th:object="${veiculo}">
+
+                <div class="modal-body">
+                    <!-- Campo de texto para pesquisar pelo nome do motorista -->
+                    <input type="text" placeholder="Digite o nome do motorista." th:field="*{nome}" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <!-- Botões para fechar ou submeter a pesquisa -->
+                    <button class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success">Pesquisar</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Inclusão do rodapé (fragmento Thymeleaf) -->
+<div th:replace="fragmentos/fragmentos.html :: rodape"></div>
+
+<!-- Scripts do jQuery e Bootstrap -->
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

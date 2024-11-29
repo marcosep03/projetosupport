@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>Projeto Sistema de Portaria</title>
+    <meta name="author" content="Marcos Eduardo"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Cabeçalho -->
+<header th:fragment="cabecalho">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7C4DFF">
+        <!-- Logo e link para página inicial -->
+        <a class="navbar-brand" th:href="@{/index}">
+            <img src="/img/logotipo.png" style="width: 115px; height: 115px; clip-path: inset(0 0 25% 0); margin-top: 30px;"  alt=""/>
+        </a>
+        <!-- Botão de menu em dispositivos móveis -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navMobile" class="collapse navbar-collapse justify-content-end">
+            <!-- Links do menu -->
+            <a class="btn-nav nav-item nav-link" th:href="@{/index}"><i class="fas fa-home"></i> Home</a>
+            <a class="btn-nav nav-item nav-link" th:href="@{inserirVeiculos}"><i class="fas fa-user-graduate"></i> Cadastrar Veículo</a>
+            <a data-toggle="modal" data-target="#modalPesquisa" class="btn-nav nav-item nav-link"><i class="fas fa-search"></i> Pesquisar Veículo</a>
+            <!-- Formulário para logout -->
+            <form action="/logout" method="post">
+                <button type="submit" class="btn-nav nav-item nav-link btn-danger"><i class="fas fa-times"></i> Sair</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<!-- Footer -->
+<footer th:fragment="rodape">
+    <div class="rodape">
+        <span>Todos os Direitos Reservados - 2024 &copy; Marcos Eduardo</span>
+    </div>
+</footer>
+
+<!-- Scripts necessários -->
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

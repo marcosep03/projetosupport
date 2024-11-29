@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inclusão do CSS do Bootstrap -->
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <title>Projeto Sistema de Portaria</title>
+    <meta name="author" content="Marcos Eduardo"/>
+    <!-- Inclusão do CSS específico para o login -->
+    <link rel="stylesheet" href="/css/login.css">
+    <!-- Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Inclusão de fontes do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Formulário de Cadastro de Usuário -->
+<div class="Login-Form">
+    <div class="container">
+        <div class="main-div">
+            <!-- Título e descrição do formulário -->
+            <div class="texto-header">
+                <h2>Cadastro de Usuario</h2>
+                <p>Crie seu usuario no sistema</p>
+            </div>
+            <!-- Formulário para envio dos dados de cadastro -->
+            <form method="POST" th:object="${usuario}" action="salvarUsuario">
+                <!-- Campo para e-mail do usuário -->
+                <div class="form-group">
+                    <input type="email" class="form-control" th:field="*{email}" placeholder="digite seu e-mail">
+                </div>
+
+                <!-- Campo para nome de usuário (username) -->
+                <div class="form-group">
+                    <input type="text" class="form-control" th:field="*{user}" placeholder="username">
+                </div>
+
+                <!-- Campo para senha do usuário -->
+                <div class="form-group">
+                    <input type="password" class="form-control" th:field="*{senha}" placeholder="insira sua senha">
+                </div>
+
+                <!-- Botão de envio para cadastrar o usuário -->
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
