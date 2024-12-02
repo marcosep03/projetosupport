@@ -1,6 +1,7 @@
 Tecnologias usadas:
 
-Java + SpringBoot
+Java 
+SpringBoot (JPA)
 MySQL
 HTML
 CSS
