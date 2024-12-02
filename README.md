@@ -1,9 +1,9 @@
 Tecnologias usadas:
 
 Java, 
-SpringBoot (JPA)
+SpringBoot (JPA),
 MySQL,
-HTML
+HTML,
 CSS,
-HIBERNATE
+HIBERNATE,
 JAVASCRIPT
